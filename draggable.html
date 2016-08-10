@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拖动元素</title>
+    <link rel="stylesheet" href="css/easyui.css">
+    <link rel="stylesheet" href="css/icon.css">
+</head>
+<body>
+<!--<div class="easyui-draggable" data-options="handle:'#title',revert:true,cursor:'pointer',edge:10,axis:'h'" style="width:100px;height:100px;">-->
+    <!--<div id="title" style="background:#ccc; height: 30px;">title</div>-->
+    <!--<div id="one" style="width:100%;height: 50px; background: red;"></div>-->
+<!--</div>-->
+<div id="dd" style="width:100px;height:100px;background: #000;">
+    <div id="title" style="background:#ccc;">title</div>
+    <div id="one" style="width:100%;height: 200px; background: red;"></div>
+</div>
+</body>
+</html>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.easyui.min.js"></script>
+<script>
+    $(function(){
+       $("#dd").draggable({
+            handle:"#one",
+            revert:true,
+            delatX:10,
+            axis:"v",
+            onStartDrag:function(){
+                console.log(1)
+            },
+            onStopDrag:function(e){
+                console.dir(e)
+            }
+       })
+//       $("#dd").onBeforeDrag(function(e){
+//           alert(1)
+//       })
+      /*  $("#dd").onStartDrag(function(e){
+            alert(2)
+        })
+        $("#dd").onDrag(function(e){
+            alert(3)
+        })
+        $("#dd").onStopDrag(function(e){
+            alert(4)
+        })*/
+    })
+</script>
