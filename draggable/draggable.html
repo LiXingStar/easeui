@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>可拖动元素</title>
-    <link rel="stylesheet" href="css/easyui.css">
-    <link rel="stylesheet" href="css/icon.css">
+    <link rel="stylesheet" href="../css/easyui.css">
+    <link rel="stylesheet" href="../css/icon.css">
 </head>
 <body>
 <!--<div class="easyui-draggable" data-options="handle:'#title',revert:true,cursor:'pointer',edge:10,axis:'h'" style="width:100px;height:100px;">-->
@@ -17,8 +17,8 @@
 </div>
 </body>
 </html>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.easyui.min.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.easyui.min.js"></script>
 <script>
     $(function(){
        $("#dd").draggable({
@@ -27,10 +27,18 @@
             delatX:10,
             axis:"v",
             onStartDrag:function(){
-                console.log(1)
+//                console.log(1)
             },
             onStopDrag:function(e){
-                console.dir(e)
+//                console.dir(e)
+            },
+            proxy:function(source){
+                var p = $('<div style="width:100px;height: 80px;"></div>');
+                p.html($(source).html()).appendTo(source);
+                return p;
+            },
+            disable:function(e){
+                console.log(e)
             }
        })
 //       $("#dd").onBeforeDrag(function(e){

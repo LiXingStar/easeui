@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>分页</title>
+    <link rel="stylesheet" href="../css/icon.css">
+    <link rel="stylesheet" href="../css/easyui.css">
+</head>
+<body>
+<div class="easyui-panel">
+
+    <div class="box" ></div>
+</div>
+<a id="dd" href="javascript:void(0)">Click here</a>
+<div id="cc" >
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.easyui.min.js"></script>
+<script>
+$(function(){
+    $(".box").pagination({
+        total:50,
+        pageSize:5,
+        pageNumber:2,
+        pageList:[5,15,20],
+        buttons: [{
+            iconCls:'icon-add',
+            handler:function(){alert('add')}
+        },'-',{
+            iconCls:'icon-save',
+            handler:function(){alert('save')}
+        }]
+    })
+})
+$('#dd').tooltip({
+    position: 'right',
+    content: '<span style="color:#fff">This is the tooltip message.</span>',
+    onShow: function(){
+        $(this).tooltip('tip').css({
+            backgroundColor: '#666',
+            borderColor: '#666'
+        });
+    }
+});
+$('#cc').calendar({
+    current:new Date(),
+    width:800,
+    height:320,
+    border:true,
+    firstDay:0,
+    weeks:['S','M','T','W','T','F','S'],
+    months:	['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    month:5,
+    onSelect:function(date){
+        alert(date.getFullYear()+":"+(date.getMonth()+1)+":"+date.getDate());
+    }
+});
+var data=new Date();
+month=data.getMonth();
+year=data.getFullYear();
+$(".box").click(function(){
+    $('#cc').calendar('moveTo',new Date(year,month) );
+})
+</script>

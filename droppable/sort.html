@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort</title>
+    <style>
+        .sort{
+            width: 300px;
+            height: 30px;
+            background: #cccccc;
+            margin-bottom: 10px;
+            border: 1px solid #aaaaaa;
+
+        }
+        .lt{
+            color: red;
+            display: none;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div class="sort">01</div>
+<div class="sort">02</div>
+<div class="sort">03</div>
+<div class="sort">04</div>
+<div class="sort">05</div>
+<div class="lt"> &gt;&gt;</div>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.easyui.min.js"></script>
+<script>
+    $(function(){
+       $(".sort").draggable({
+           revert:true
+       }).droppable({
+           onDragOver:function(e,source){
+               $(".lt").css({
+                   display:'block',
+                   left:$(this).offset().left-10,
+                   top:$(this).offset().top+$(this).outerHeight()-5
+               });
+           },
+           onDragLeave:function(e,source){
+               $(".lt").hide();
+           },
+           onDrop:function(e,source){
+               $(source).insertAfter(this);
+               $(".lt").hide();
+           }
+       });
+    })
+</script>

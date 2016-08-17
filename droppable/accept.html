@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>accept</title>
+    <style>
+        .boxL{
+            width:200px;
+            height:300px;
+            border: 1px solid #0000FF;
+            float: left;
+        }
+        .sBox{
+            width:50px;
+            height: 50px;
+            margin: 30px 0 0 0;
+            background-color: #6ae9ff;
+        }
+        .boxR{
+            width: 300px;
+            height: 300px;
+            border: 1px solid #0000FF;
+            float: left;
+            margin-left:30px ;
+        }
+        .active{
+            background: #f40;
+        }
+    </style>
+</head>
+<body>
+<div class="boxL">
+    <div class="sBox">drop1</div>
+    <div class="sBox">drop2</div>
+    <div class="sBox">drop3</div>
+</div>
+<div class="boxR">
+
+</div>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery.easyui.min.js"></script>
+<script>
+    $(function(){
+       $(".sBox").draggable({
+            revert:true,
+            proxy:"clone"
+        })
+        $(".boxR").droppable({
+            accept:".sBox",
+            onDragEnter:function(e,source){
+               $(source).css("border","1px solid red");
+               $(this).addClass("active");
+            },
+            onDragLeave:function(e,source){
+                $(source).css("border","none");
+                $(this).removeClass("active");
+            },
+            onDrop:function (e,source) {
+                $(source).css("border","none");
+                $(this).removeClass("active");
+                $(this).append(source);
+            }
+        })
+    })
+</script>
